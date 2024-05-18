@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .lightext {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p id="targetp">Urban farming, the practice of cultivating crops and raising livestock within cities, is gaining traction worldwide. Driven by concerns about food security, sustainability, and access to fresh produce, this innovative approach offers a glimpse into the future of food production. Vertical farms, utilizing indoor spaces and hydroponics, maximize yields while minimizing land use. Rooftop gardens transform unused spaces into vibrant oases, fostering community engagement and biodiversity. By shortening supply chains and reducing transportation costs, urban farming offers fresher, more affordable food options for city dwellers. Although challenges like initial investment and water usage remain, urban agriculture presents a promising solution for feeding a growing population in a resource-constrained world.</p>
+<script>
+
+
+function highlightWords() {
+    const txt = document.getElementById("targetp").innerText;
+    let output = "";
+    let words = txt.split(" ");
+    let size = 8   //don't really need this - size as a variable isn't used anywhere else,
+    let replacementword = ""; //this will store our output - it's easier than trying to update thee text "in place"
+    for (let i = 0; i < words.length; i++) {
+        let word = words[i];
+        if (word.length >= 8) {  //this is where we figure out if the word is longer than 8
+            replacementword = "<span class='lightext'>" + word + "</span>";  //if it is, we just need to wrap it in a span with lighttext class - assuming you have a "highlighted" style applied to class lightext, see styles above for mine
+        } 
+        else {
+            replacementword = word;  //shorter than 8, don't need to change anything
+        }
+        output = output + " " + replacementword + " ";  //add the updated word to our output
+    }
+
+    return output; //return our finished output string to the function call
+}
+
+document.getElementById("targetp").innerHTML = highlightWords();   //actually update the <p> tag with the new text, WHICH is now HTML rather than just plain text
+</script>
+
+</body>
+</html>
